@@ -134,6 +134,11 @@ class Pool(list, XMLElement):
                 return i
         raise WrongNameError()
 
+    def get_by_prefix(self, prefix):
+        for i in self:
+            if i.name.startswith(prefix):
+                yield i
+
 
 class PoolElement(XMLElement):
     def __init__(self, xml, client):
