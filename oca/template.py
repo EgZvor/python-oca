@@ -12,6 +12,7 @@ class VmTemplate(PoolElement):
         'chown': 'template.chown',
         'instantiate': 'template.instantiate',
         'clone': 'template.clone',
+        'rename': 'template.rename',
     }
 
     XML_TYPES = {
@@ -56,6 +57,12 @@ class VmTemplate(PoolElement):
         """
         self.client.call(VmTemplate.METHODS['update'], self.id, template, update_type)
 
+    def delete(self):
+        """
+        Deletes the template contents.
+        """
+        self.client.call(VmTemplate.METHODS['delete'], self.id, False)
+
     def publish(self):
         """
         Publishes a template.
@@ -78,6 +85,12 @@ class VmTemplate(PoolElement):
              The Group ID of the new group. If set to -1, the group is not changed.
         """
         self.client.call(VmTemplate.METHODS['chown'], self.id, uid, gid)
+
+    def rename(self, name):
+        """
+        Renames VmTemplate
+        """
+        return self.client.call(VmTemplate.METHODS['rename'], self.id, name)
 
     def instantiate(self, name='', pending=False, extra_template=''):
         """
