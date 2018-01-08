@@ -309,6 +309,18 @@ class VirtualMachine(PoolElement):
         """
         self._action('delete')
 
+    def terminate(self):
+        """
+        Terminate the VM.
+        """
+        self._action('terminate')
+
+    def terminate_hard(self):
+        """
+        Terminate the VM.
+        """
+        self._action('terminate-hard')
+
     def resched(self):
         """
         Set the rescheduling flag of the VM.
